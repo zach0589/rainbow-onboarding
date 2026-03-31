@@ -146,44 +146,16 @@
     .offer-inner {
       max-width: 620px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      text-align: center;
     }
-    .offer-badge {
-      background: var(--rbw-red);
-      color: var(--white);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .offer-content strong {
-      display: block;
-      font-size: 0.92rem;
-      color: var(--rbw-navy);
-      margin-bottom: 0.35rem;
-    }
-    .offer-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .offer-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
+    .offer-text {
+      font-size: 0.9rem;
       color: var(--text);
+      line-height: 1.5;
+      margin: 0;
     }
-    .offer-icon {
-      font-size: 1rem;
-      flex-shrink: 0;
+    .offer-text strong {
+      color: var(--rbw-navy);
     }
 
     /* ── Quick Form ── */
@@ -872,23 +844,8 @@
   <!-- Show Offer -->
   <div class="offer-banner">
     <div class="offer-inner">
-      <div class="offer-badge">Show Exclusive</div>
       <div class="offer-content">
-        <strong>Sign up today and get:</strong>
-        <div class="offer-items">
-          <div class="offer-item">
-            <span class="offer-icon">&#128269;</span>
-            <span>Free competitive audit of your territory</span>
-          </div>
-          <div class="offer-item">
-            <span class="offer-icon">&#128200;</span>
-            <span>3 bonus keywords tracked at every service level</span>
-          </div>
-          <div class="offer-item">
-            <span class="offer-icon">&#128205;</span>
-            <span>Free geo page built for your top service area</span>
-          </div>
-        </div>
+        <p class="offer-text"><strong>Conference special</strong> — sign up this week and we'll include a full content and competitive analysis, 3 bonus tracked keywords per service level, and a geo page for your top area.</p>
       </div>
     </div>
   </div>
@@ -898,7 +855,7 @@
     <div class="quick-card">
       <div id="quick-form-content">
         <h2>Claim Your Show Exclusive</h2>
-        <p class="quick-sub">Fill out the form below to lock in your free territory audit, bonus keywords, and geo page.</p>
+        <p class="quick-sub">Fill out the form below to lock in your conference special.</p>
         <form id="quick-capture" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe">
           <div class="quick-row">
             <div>

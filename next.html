@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Levels | Rainbow Restoration + Spot On Solutions</title>
+  <style>
+    :root {
+      --rbw-navy: #002B5C;
+      --rbw-red: #C8102E;
+      --rbw-blue: #0057A0;
+      --sos-blue: #1B5FAA;
+      --white: #ffffff;
+      --off-white: #f5f7fa;
+      --text: #2c3e50;
+      --text-light: #5a6a7a;
+      --border: #dce3eb;
+      --success: #27ae60;
+      --radius: 10px;
+      --shadow: 0 2px 16px rgba(0,43,92,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--white);
+      border-bottom: 3px solid var(--rbw-red);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .header-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .header-logo img { height: 52px; width: auto; }
+    .header-divider { width: 2px; height: 40px; background: var(--border); }
+    .header-tag {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* ── Confirmation Banner ── */
+    .confirmation {
+      background: linear-gradient(135deg, var(--rbw-navy) 0%, var(--rbw-blue) 60%, var(--sos-blue) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    .confirm-check {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--success);
+      color: var(--white);
+      font-size: 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .confirmation h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .confirmation p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── Levels Section ── */
+    .levels-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 1.5rem;
+    }
+    .levels-section h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--rbw-navy);
+      margin-bottom: 0.35rem;
+    }
+    .levels-subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .level-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem 1.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .level-card:hover {
+      border-color: var(--rbw-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,43,92,0.1);
+    }
+    .level-card.selected {
+      border-color: var(--rbw-red);
+      box-shadow: 0 4px 20px rgba(200,16,46,0.15);
+    }
+    .level-card.selected .level-name::after {
+      content: ' ✓';
+      color: var(--success);
+    }
+    .level-featured {
+      border-color: var(--rbw-red);
+      box-shadow: 0 4px 20px rgba(200,16,46,0.1);
+    }
+    .level-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--rbw-red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .level-name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--rbw-navy);
+      text-align: center;
+      margin-bottom: 0.35rem;
+    }
+    .level-price {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--rbw-red);
+      margin-bottom: 0.85rem;
+    }
+    .level-price span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+    .level-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+    .level-features li {
+      font-size: 0.82rem;
+      padding: 0.3rem 0;
+      padding-left: 1.3rem;
+      position: relative;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .level-features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .levels-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 1.25rem;
+    }
+
+    /* ── Not Sure Option ── */
+    .not-sure-option {
+      margin-top: 1.5rem;
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--white);
+    }
+    .not-sure-option:hover {
+      border-color: var(--rbw-blue);
+      background: rgba(0,87,160,0.03);
+    }
+    .not-sure-option.selected {
+      border-color: var(--rbw-red);
+      border-style: solid;
+      box-shadow: 0 4px 20px rgba(200,16,46,0.15);
+      background: rgba(200,16,46,0.02);
+    }
+    .not-sure-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .not-sure-text strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--rbw-navy);
+      margin-bottom: 0.15rem;
+    }
+    .not-sure-text span {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.45;
+    }
+
+    /* ── Schedule CTA ── */
+    .schedule-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1rem 1rem 3rem;
+      text-align: center;
+    }
+    .btn-schedule {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--rbw-red), #a00d25);
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-schedule:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+    }
+    .btn-onboarding {
+      background: linear-gradient(135deg, var(--rbw-navy), var(--rbw-blue));
+    }
+    .btn-onboarding:hover {
+      box-shadow: 0 4px 16px rgba(0,43,92,0.3);
+    }
+    .schedule-note {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 0.6rem;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .footer a { color: var(--rbw-navy); text-decoration: none; font-weight: 600; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+
+    @media (max-width: 720px) {
+      .confirmation h1 { font-size: 1.4rem; }
+      .levels-grid { grid-template-columns: 1fr; }
+      .header { gap: 1rem; padding: 0.75rem 1rem; }
+      .header-logo img { height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-logo">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <span class="header-tag">Digital Marketing Program</span>
+  </header>
+
+  <!-- Confirmation -->
+  <section class="confirmation">
+    <div class="confirm-check">&#10003;</div>
+    <h1>Thanks for connecting!</h1>
+    <p>A dedicated marketing specialist will be in touch within 1 business day to walk you through the program.</p>
+  </section>
+
+  <!-- Service Levels -->
+  <div class="levels-section">
+    <h2>Which service level interests you?</h2>
+    <p class="levels-subtitle">Select one to let your consultant know, or discuss it during your meeting.</p>
+    <div class="levels-grid">
+      <div class="level-card" onclick="selectLevel(this, 'Starter')">
+        <div class="level-name">Starter</div>
+        <div class="level-price">$875<span>/mo</span></div>
+        <ul class="level-features">
+          <li>10 keywords tracked</li>
+          <li>GBP optimizations &amp; posting</li>
+          <li>On-page optimizations</li>
+          <li>Local Service Ads management</li>
+          <li>Standard SEO reporting</li>
+          <li>Monthly strategy call</li>
+        </ul>
+      </div>
+      <div class="level-card level-featured" onclick="selectLevel(this, 'Standard')">
+        <span class="level-badge">Most Popular</span>
+        <div class="level-name">Standard</div>
+        <div class="level-price">$3,500<span>/mo + 10% ad spend</span></div>
+        <ul class="level-features">
+          <li>15 keywords tracked</li>
+          <li>GBP optimizations &amp; posting</li>
+          <li>On-page optimizations</li>
+          <li>1 local page created monthly</li>
+          <li>Standard SEO reporting</li>
+          <li>Local Service Ads management</li>
+          <li>Google Ads campaign (min $2K budget)</li>
+          <li>Monthly strategy call</li>
+        </ul>
+      </div>
+      <div class="level-card" onclick="selectLevel(this, 'Accelerated')">
+        <div class="level-name">Accelerated</div>
+        <div class="level-price">$4,400<span>/mo + 10% ad spend</span></div>
+        <ul class="level-features">
+          <li>25 keywords tracked</li>
+          <li>GBP optimizations &amp; posting</li>
+          <li>On-page optimizations</li>
+          <li>2 local pages created monthly</li>
+          <li>Standard SEO reporting</li>
+          <li>Local Service Ads management</li>
+          <li>Google Ads campaign (min $2K budget)</li>
+          <li>Social Media Ads (min $500 budget)</li>
+          <li>Monthly strategy call</li>
+        </ul>
+      </div>
+    </div>
+    <p class="levels-note">One-time setup fee: $750. Multi-location discounts available ($50 &ndash; $150/month off).</p>
+
+    <div class="not-sure-option" onclick="selectNotSure(this)">
+      <div class="not-sure-icon">&#128197;</div>
+      <div class="not-sure-text">
+        <strong>Need help deciding?</strong>
+        <span>Talk to a Spot On Solutions marketing consultant who can recommend the right fit for your franchise.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic CTA -->
+  <div class="schedule-section" id="cta-section" style="display:none;">
+    <a href="#" id="cta-btn" class="btn-schedule"></a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logos">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
+    <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    var ctaSection = document.getElementById('cta-section');
+    var ctaBtn = document.getElementById('cta-btn');
+    // TODO: replace with your actual intake form and calendly URLs
+    var intakeFormUrl = 'intake.html';
+    var scheduleUrl = '#';
+
+    function showCta() {
+      ctaSection.style.display = 'block';
+      ctaSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function selectLevel(el, levelName) {
+      document.querySelectorAll('.level-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      document.querySelector('.not-sure-option').classList.remove('selected');
+      el.classList.add('selected');
+
+      ctaBtn.textContent = 'Continue to Onboarding';
+      ctaBtn.href = intakeFormUrl + '?level=' + encodeURIComponent(levelName);
+      ctaBtn.className = 'btn-schedule btn-onboarding';
+      showCta();
+    }
+
+    function selectNotSure(el) {
+      document.querySelectorAll('.level-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      el.classList.add('selected');
+
+      ctaBtn.textContent = 'Schedule a Meeting With Your Consultant';
+      ctaBtn.href = scheduleUrl;
+      ctaBtn.className = 'btn-schedule';
+      showCta();
+    }
+  </script>
+
+</body>
+</html>

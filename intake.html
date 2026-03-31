@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding | Rainbow Restoration + Spot On Solutions</title>
+  <style>
+    :root {
+      --rbw-navy: #002B5C;
+      --rbw-red: #C8102E;
+      --rbw-blue: #0057A0;
+      --sos-blue: #1B5FAA;
+      --white: #ffffff;
+      --off-white: #f5f7fa;
+      --text: #2c3e50;
+      --text-light: #5a6a7a;
+      --border: #dce3eb;
+      --success: #27ae60;
+      --radius: 10px;
+      --shadow: 0 2px 16px rgba(0,43,92,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--white);
+      border-bottom: 3px solid var(--rbw-red);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .header-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .header-logo img { height: 52px; width: auto; }
+    .header-divider { width: 2px; height: 40px; background: var(--border); }
+    .header-tag {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+    .progress-step.completed {
+      color: var(--success);
+    }
+    .progress-step.active {
+      color: var(--rbw-navy);
+    }
+    .progress-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      color: var(--text-light);
+      background: var(--white);
+    }
+    .progress-step.completed .progress-dot {
+      background: var(--success);
+      border-color: var(--success);
+      color: var(--white);
+    }
+    .progress-step.active .progress-dot {
+      background: var(--rbw-navy);
+      border-color: var(--rbw-navy);
+      color: var(--white);
+    }
+    .progress-line {
+      width: 40px;
+      height: 2px;
+      background: var(--border);
+      margin: 0 0.5rem;
+    }
+    .progress-line.done {
+      background: var(--success);
+    }
+
+    /* ── Selected Level Banner ── */
+    .level-banner {
+      background: linear-gradient(135deg, var(--rbw-navy) 0%, var(--rbw-blue) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 1.25rem 2rem;
+    }
+    .level-banner span {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .level-banner .level-change {
+      display: inline-block;
+      margin-left: 0.75rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .level-banner .level-change:hover {
+      color: var(--white);
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 660px;
+      margin: 0 auto 3rem;
+      padding: 1.5rem 1rem 0;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: var(--rbw-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card h2 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--rbw-red);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .card .section-desc {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+      margin-left: 2.2rem;
+    }
+
+    /* ── Form Elements ── */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-group label.field-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 0.92rem;
+    }
+    .form-group .helper {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 0.35rem;
+    }
+    .required::after {
+      content: ' *';
+      color: var(--rbw-red);
+      font-weight: 700;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--rbw-blue);
+      box-shadow: 0 0 0 3px rgba(0,87,160,0.12);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .radio-group label, .checkbox-group label {
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.3rem 0;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: var(--rbw-red);
+      width: 17px;
+      height: 17px;
+    }
+
+    /* ── Budget Pills ── */
+    .budget-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .budget-pill {
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      position: relative;
+    }
+    .budget-pill:hover { border-color: var(--rbw-blue); }
+    .budget-pill.selected {
+      border-color: var(--rbw-red);
+      background: rgba(200,16,46,0.04);
+    }
+    .budget-pill input[type="radio"] { position: absolute; opacity: 0; }
+
+    /* ── Conditional ── */
+    .conditional { display: none; }
+    .conditional.visible { display: block; }
+
+    /* ── Submit ── */
+    .btn-submit {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--rbw-red), #a00d25);
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      width: 100%;
+      letter-spacing: 0.02em;
+    }
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+    }
+    .btn-submit:active { transform: scale(0.99); }
+    .submit-note {
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .footer a { color: var(--rbw-navy); text-decoration: none; font-weight: 600; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+
+    @media (max-width: 720px) {
+      .card { padding: 1.5rem 1.25rem; }
+      .header { gap: 1rem; padding: 0.75rem 1rem; }
+      .header-logo img { height: 40px; }
+      .progress-step .step-label { display: none; }
+      .level-banner { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-logo">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <span class="header-tag">Digital Marketing Program</span>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <div class="progress-step completed">
+      <span class="progress-dot">&#10003;</span>
+      <span class="step-label">Contact Info</span>
+    </div>
+    <div class="progress-line done"></div>
+    <div class="progress-step completed">
+      <span class="progress-dot">&#10003;</span>
+      <span class="step-label">Service Level</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step active">
+      <span class="progress-dot">3</span>
+      <span class="step-label">Onboarding Details</span>
+    </div>
+  </div>
+
+  <!-- Selected Level -->
+  <div class="level-banner">
+    <span id="selected-level-text">Standard</span> selected
+    <a class="level-change" onclick="history.back()">change</a>
+  </div>
+
+  <!-- Form -->
+  <div class="container">
+    <form id="intake-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe">
+
+      <!-- Hidden: level selection passed from page 2 -->
+      <input type="hidden" id="level-value" name="entry.19826248" value="Standard">
+
+      <!-- Section 1: Services -->
+      <div class="card">
+        <h2><span class="num">1</span> Services &amp; Focus</h2>
+        <p class="section-desc">Which services should we drive leads for?</p>
+
+        <div class="form-group">
+          <label class="field-label required">Main Services to Advertise</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="entry.29006496" value="Water"> Water Damage Restoration</label>
+            <label><input type="checkbox" name="entry.29006496" value="Fire"> Fire Damage Restoration</label>
+            <label><input type="checkbox" name="entry.29006496" value="Mold"> Mold Remediation</label>
+            <label><input type="checkbox" name="entry.29006496" value="Other" id="other-check"> Other</label>
+          </div>
+        </div>
+
+        <div class="form-group conditional" id="other-specify">
+          <label class="field-label required" for="other-text">Please specify other services</label>
+          <input type="text" id="other-text" name="entry.487426541" placeholder="e.g. Biohazard cleanup, Storm damage">
+        </div>
+
+        <div class="form-group">
+          <label class="field-label" for="focus">Services or Customer Focus</label>
+          <p class="helper">Any specific services or customer types you want to prioritize?</p>
+          <textarea id="focus" name="entry.853689257" placeholder="e.g. Focus on residential water damage, commercial fire jobs"></textarea>
+        </div>
+      </div>
+
+      <!-- Section 2: Business Details -->
+      <div class="card">
+        <h2><span class="num">2</span> Business Details</h2>
+        <p class="section-desc">A few more details to help us build your campaigns.</p>
+
+        <div class="form-group">
+          <label class="field-label required">Preferred Communication Method</label>
+          <div class="radio-group">
+            <label><input type="radio" name="entry.582586495" value="Email" required> Email</label>
+            <label><input type="radio" name="entry.582586495" value="Phone"> Phone</label>
+            <label><input type="radio" name="entry.582586495" value="Text"> Text</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label required" for="address">Office Address</label>
+          <input type="text" id="address" name="entry.1918179121" required placeholder="123 Main St, City, State ZIP">
+        </div>
+
+        <div class="form-group">
+          <label class="field-label" for="office-name">Office Name for Google Ads</label>
+          <p class="helper">The business name you want displayed in your ads.</p>
+          <input type="text" id="office-name" name="entry.344431799" placeholder="e.g. Rainbow Restoration of Springfield">
+        </div>
+      </div>
+
+      <!-- Section 3: Budget -->
+      <div class="card">
+        <h2><span class="num">3</span> Monthly PPC Budget</h2>
+        <p class="section-desc">What ad spend level works for you?</p>
+
+        <div class="form-group">
+          <div class="budget-options">
+            <label class="budget-pill" onclick="selectBudget(this)">
+              <input type="radio" name="entry.1582309321" value="$2000/mo" required>
+              $2,000/mo
+            </label>
+            <label class="budget-pill" onclick="selectBudget(this)">
+              <input type="radio" name="entry.1582309321" value="$3500/mo">
+              $3,500/mo
+            </label>
+            <label class="budget-pill" onclick="selectBudget(this)">
+              <input type="radio" name="entry.1582309321" value="$5000+/mo">
+              $5,000+/mo
+            </label>
+            <label class="budget-pill" onclick="selectBudget(this)">
+              <input type="radio" name="entry.1582309321" value="Not sure">
+              Not Sure
+            </label>
+            <label class="budget-pill" onclick="selectBudget(this)">
+              <input type="radio" name="entry.1582309321" value="Starter level, so no PPC">
+              No PPC (Starter)
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="card" style="text-align: center;">
+        <button type="submit" class="btn-submit">Submit Onboarding</button>
+        <p class="submit-note">Your dedicated specialist will follow up within 1 business day.</p>
+      </div>
+
+    </form>
+  </div>
+
+  <iframe name="hidden-iframe" style="display:none;"></iframe>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logos">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
+    <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Read level from URL param
+    var params = new URLSearchParams(window.location.search);
+    var level = params.get('level') || 'Standard';
+    document.getElementById('selected-level-text').textContent = level;
+    document.getElementById('level-value').value = level;
+
+    // Other field toggle
+    document.getElementById('other-check').addEventListener('change', function() {
+      document.getElementById('other-specify').classList.toggle('visible', this.checked);
+    });
+
+    // Budget pill selection
+    function selectBudget(el) {
+      document.querySelectorAll('.budget-pill').forEach(function(c) { c.classList.remove('selected'); });
+      el.classList.add('selected');
+    }
+
+    // On submit, show confirmation or redirect
+    document.getElementById('intake-form').addEventListener('submit', function() {
+      setTimeout(function() {
+        // TODO: redirect to a thank-you page or show inline confirmation
+        alert('Onboarding submitted! Your specialist will be in touch.');
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

@@ -73,7 +73,7 @@
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: var(--success);
+      background: var(--rbw-navy);
       color: var(--white);
       font-size: 2.2rem;
       display: inline-flex;
@@ -149,7 +149,7 @@
       gap: 1.5rem;
       margin-bottom: 0.75rem;
     }
-    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+    .footer-logos img { height: 48px; width: auto; }
 
     .bonuses-confirmed h3 {
       font-size: 0.95rem;
@@ -163,16 +163,13 @@
       gap: 0.4rem;
     }
     .bonus-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
       font-size: 0.9rem;
       color: var(--text);
+      padding: 0.15rem 0;
     }
-    .bonus-check {
-      color: var(--success);
-      font-weight: 700;
-      font-size: 1rem;
+    .bonus-item::before {
+      content: "\2022\0020";
+      color: var(--rbw-navy);
     }
 
     .referral {
@@ -243,11 +240,11 @@
       <div class="divider"></div>
 
       <div class="bonuses-confirmed">
-        <h3>Your show exclusive bonuses are locked in</h3>
+        <h3>Your conference special is confirmed</h3>
         <div class="bonus-list">
-          <div class="bonus-item"><span class="bonus-check">&#10003;</span> Comprehensive content and competitive analysis</div>
-          <div class="bonus-item"><span class="bonus-check">&#10003;</span> 3 bonus keywords tracked</div>
-          <div class="bonus-item"><span class="bonus-check">&#10003;</span> Free geo page for your top service area</div>
+          <div class="bonus-item">Comprehensive content and competitive analysis</div>
+          <div class="bonus-item">3 complimentary keywords tracked</div>
+          <div class="bonus-item">Geo page built for your top service area</div>
         </div>
       </div>
 
@@ -266,7 +263,7 @@
 
       <div class="referral">
         <h3>Know another Rainbow franchisee?</h3>
-        <p>Share this page — they can claim the show exclusive too.</p>
+        <p>Share this page — they can claim the conference special too.</p>
         <button class="btn-copy" onclick="copyLink()">Copy Link</button>
         <span class="copy-confirm" id="copy-confirm"></span>
       </div>
@@ -275,8 +272,12 @@
 
   <footer class="footer">
     <div class="footer-logos">
-      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
       <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <div class="footer-logos" style="margin-top: 0.75rem;">
+      <img src="assets/google-premier-partner.png" alt="Google Premier Partner 2026">
+      <img src="assets/forbes-agency-council.png" alt="Forbes Agency Council">
+      <img src="assets/ria-vendor-member.jpg" alt="RIA Vendor Member">
     </div>
     <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
     <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>

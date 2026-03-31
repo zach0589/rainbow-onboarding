@@ -315,7 +315,7 @@
     }
     .level-card.selected .level-name::after {
       content: ' ✓';
-      color: var(--success);
+      color: var(--rbw-navy);
     }
     .schedule-cta {
       text-align: center;
@@ -383,7 +383,6 @@
       padding: 1.5rem 1.25rem;
       text-align: center;
     }
-    .value-icon { font-size: 2rem; margin-bottom: 0.5rem; }
     .value-card h3 {
       font-size: 0.95rem;
       font-weight: 700;
@@ -486,10 +485,10 @@
       position: absolute;
       left: 0;
       top: 0.55rem;
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--success);
+      background: var(--rbw-navy);
     }
     .levels-note {
       text-align: center;
@@ -688,10 +687,10 @@
       position: absolute;
       left: 0;
       top: 0.55rem;
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--success);
+      background: var(--rbw-navy);
     }
     .pkg-popular {
       position: absolute;
@@ -859,9 +858,29 @@
       <p class="offer-headline">Enroll and get these complimentary:</p>
       <ul class="offer-list">
         <li>Comprehensive content and competitive analysis</li>
-        <li>3 bonus keywords tracked per service level</li>
+        <li>3 complimentary keywords tracked per service level</li>
         <li>Geo page built for your top service area</li>
       </ul>
+    </div>
+  </div>
+
+  <!-- What's Included -->
+  <div class="value-section">
+    <h2>What's Included</h2>
+    <p class="subtitle">Everything you need to grow your franchise online, managed for you.</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <h3>Google Ads &amp; LSA</h3>
+        <p>Campaigns built around your territory, managed and optimized monthly.</p>
+      </div>
+      <div class="value-card">
+        <h3>SEO &amp; Content</h3>
+        <p>Keyword tracking, local pages, GBP posting, and on-page optimization.</p>
+      </div>
+      <div class="value-card">
+        <h3>Reporting &amp; Strategy</h3>
+        <p>Monthly performance reports and strategy calls with your dedicated consultant.</p>
+      </div>
     </div>
   </div>
 
@@ -869,7 +888,7 @@
   <div class="quick-form-section" id="quick-form">
     <div class="quick-card">
       <div id="quick-form-content">
-        <h2>Claim Your Show Exclusive</h2>
+        <h2>Get Started</h2>
         <p class="quick-sub">Fill out the form below to lock in your conference special.</p>
         <form id="quick-capture" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe">
           <div class="quick-row">
@@ -892,7 +911,9 @@
               <input type="text" id="q-franchise" name="entry.438803073" placeholder="e.g. RBW12345">
             </div>
           </div>
-          <!-- Combine name + email into the contact field -->
+          <!-- Name and email submitted separately + combined for legacy field -->
+          <input type="hidden" id="q-name-hidden" name="entry.1854573517">
+          <input type="hidden" id="q-email-hidden" name="entry.1325498381">
           <input type="hidden" id="q-contact-combined" name="entry.1668087612">
           <button type="submit" class="btn-quick">Get Started</button>
         </form>
@@ -918,10 +939,12 @@
   </footer>
 
   <script>
-    // Quick form: combine name + email into the contact field, then show success
+    // Quick form: populate hidden fields, then redirect
     document.getElementById('quick-capture').addEventListener('submit', function(e) {
       var name = document.getElementById('q-name').value;
       var email = document.getElementById('q-email').value;
+      document.getElementById('q-name-hidden').value = name;
+      document.getElementById('q-email-hidden').value = email;
       document.getElementById('q-contact-combined').value = name + ' — ' + email;
 
       // Redirect to service levels page after submission

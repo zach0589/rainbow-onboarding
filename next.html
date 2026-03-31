@@ -114,7 +114,7 @@
     }
     .level-card.selected .level-name::after {
       content: ' ✓';
-      color: var(--success);
+      color: var(--rbw-navy);
     }
     .level-featured {
       border-color: var(--rbw-red);
@@ -173,10 +173,10 @@
       position: absolute;
       left: 0;
       top: 0.55rem;
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--success);
+      background: var(--rbw-navy);
     }
     .levels-note {
       text-align: center;
@@ -207,10 +207,6 @@
       border-style: solid;
       box-shadow: 0 4px 20px rgba(200,16,46,0.15);
       background: rgba(200,16,46,0.02);
-    }
-    .not-sure-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
     }
     .not-sure-text strong {
       display: block;
@@ -279,7 +275,7 @@
       gap: 1.5rem;
       margin-bottom: 0.75rem;
     }
-    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+    .footer-logos img { height: 48px; width: auto; }
 
     @media (max-width: 720px) {
       .levels-grid { grid-template-columns: 1fr; }
@@ -310,7 +306,7 @@
   <!-- Service Levels -->
   <div class="levels-section">
     <h2>Which level fits your franchise?</h2>
-    <p class="levels-subtitle">Your show exclusive includes 3 bonus keywords on top of any level below.</p>
+    <p class="levels-subtitle">Your conference special includes 3 complimentary keywords on top of any level below.</p>
     <div class="levels-grid">
       <div class="level-card" onclick="selectLevel(this, 'Starter')">
         <div class="level-name">Starter</div>
@@ -358,7 +354,6 @@
     <p class="levels-note">One-time setup fee: $750. Multi-location discounts available ($50 &ndash; $150/month off).</p>
 
     <div class="not-sure-option" onclick="selectNotSure(this)">
-      <div class="not-sure-icon">&#128197;</div>
       <div class="not-sure-text">
         <strong>Need help deciding?</strong>
         <span>Talk to a Spot On Solutions marketing consultant who can recommend the right fit for your franchise.</span>
@@ -374,8 +369,12 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logos">
-      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
       <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <div class="footer-logos" style="margin-top: 0.75rem;">
+      <img src="assets/google-premier-partner.png" alt="Google Premier Partner 2026">
+      <img src="assets/forbes-agency-council.png" alt="Forbes Agency Council">
+      <img src="assets/ria-vendor-member.jpg" alt="RIA Vendor Member">
     </div>
     <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
     <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>

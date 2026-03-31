@@ -308,7 +308,7 @@
       gap: 1.5rem;
       margin-bottom: 0.75rem;
     }
-    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+    .footer-logos img { height: 48px; width: auto; }
 
     @media (max-width: 720px) {
       .card { padding: 1.5rem 1.25rem; }
@@ -429,9 +429,12 @@
         </div>
       </div>
 
+      <!-- Hidden: combined goals -->
+      <input type="hidden" id="goals-combined" name="entry.1045229057">
+
       <!-- Submit -->
       <div class="card" style="text-align: center;">
-        <button type="submit" class="btn-submit">Finish &amp; Claim Your Bonuses</button>
+        <button type="submit" class="btn-submit">Submit</button>
       </div>
 
     </form>
@@ -442,8 +445,12 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logos">
-      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
       <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <div class="footer-logos" style="margin-top: 0.75rem;">
+      <img src="assets/google-premier-partner.png" alt="Google Premier Partner 2026">
+      <img src="assets/forbes-agency-council.png" alt="Forbes Agency Council">
+      <img src="assets/ria-vendor-member.jpg" alt="RIA Vendor Member">
     </div>
     <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
     <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>
@@ -467,8 +474,14 @@
       el.classList.add('selected');
     }
 
-    // On submit, redirect to thank you page
+    // On submit, combine goal checkboxes into hidden field, then redirect
     document.getElementById('intake-form').addEventListener('submit', function() {
+      var goals = [];
+      document.querySelectorAll('input[name="goal"]:checked').forEach(function(cb) {
+        goals.push(cb.value);
+      });
+      document.getElementById('goals-combined').value = goals.join(', ');
+
       setTimeout(function() {
         window.location.href = 'thanks.html';
       }, 500);

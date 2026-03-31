@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Rainbow Restoration + Spot On Solutions</title>
+  <style>
+    :root {
+      --rbw-navy: #002B5C;
+      --rbw-red: #C8102E;
+      --rbw-blue: #0057A0;
+      --sos-blue: #1B5FAA;
+      --white: #ffffff;
+      --off-white: #f5f7fa;
+      --text: #2c3e50;
+      --text-light: #5a6a7a;
+      --border: #dce3eb;
+      --success: #27ae60;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: var(--white);
+      border-bottom: 3px solid var(--rbw-red);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .header-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .header-logo img { height: 52px; width: auto; }
+    .header-divider { width: 2px; height: 40px; background: var(--border); }
+    .header-tag {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .thank-you {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .thank-you-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,43,92,0.1);
+      padding: 3rem 2.5rem;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--success);
+      color: var(--white);
+      font-size: 2.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .thank-you-card h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--rbw-navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .thank-you-card p {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .thank-you-card .highlight {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .divider {
+      width: 50px;
+      height: 3px;
+      background: var(--rbw-red);
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+
+    .next-steps {
+      text-align: left;
+      margin-top: 0.5rem;
+    }
+
+    .next-steps h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--rbw-navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .next-steps ol {
+      padding-left: 1.25rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .next-steps li {
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .footer a { color: var(--rbw-navy); text-decoration: none; font-weight: 600; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
+
+    @media (max-width: 720px) {
+      .thank-you-card { padding: 2rem 1.5rem; }
+      .thank-you-card h1 { font-size: 1.4rem; }
+      .header { gap: 1rem; padding: 0.75rem 1rem; }
+      .header-logo img { height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-logo">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-logo">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <span class="header-tag">Digital Marketing Program</span>
+  </header>
+
+  <div class="thank-you">
+    <div class="thank-you-card">
+      <div class="check-circle">&#10003;</div>
+      <h1>Thank you!</h1>
+      <p>Your onboarding form has been submitted. A dedicated Spot On Solutions marketing consultant will be in touch within <span class="highlight">1&ndash;2 business days</span>.</p>
+
+      <div class="divider"></div>
+
+      <div class="next-steps">
+        <h3>What happens next</h3>
+        <ol>
+          <li>Your consultant reviews your submission</li>
+          <li>They'll reach out via your preferred contact method</li>
+          <li>Together you'll finalize your strategy and get your campaigns launched</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logos">
+      <img src="https://www.neighborly.com/us/en-us/_assets/brand-config-logos/rainbow-restoration-new-r-logo-588x336.webp" alt="Rainbow Restoration">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
+    <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

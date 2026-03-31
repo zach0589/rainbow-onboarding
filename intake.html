@@ -467,11 +467,10 @@
       el.classList.add('selected');
     }
 
-    // On submit, show confirmation or redirect
+    // On submit, redirect to thank you page
     document.getElementById('intake-form').addEventListener('submit', function() {
       setTimeout(function() {
-        // TODO: redirect to a thank-you page or show inline confirmation
-        alert('Onboarding submitted! Your specialist will be in touch.');
+        window.location.href = 'thanks.html';
       }, 500);
     });
   </script>

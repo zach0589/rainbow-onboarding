@@ -347,7 +347,7 @@
     <div class="progress-line"></div>
     <div class="progress-step active">
       <span class="progress-dot">3</span>
-      <span class="step-label">Onboarding Details</span>
+      <span class="step-label">Services &amp; Goals</span>
     </div>
   </div>
 
@@ -391,60 +391,26 @@
         </div>
       </div>
 
-      <!-- Section 2: Business Details -->
+      <!-- Section 2: About Your Business -->
       <div class="card">
-        <h2><span class="num">2</span> Business Details</h2>
-        <p class="section-desc">A few more details to help us build your campaigns.</p>
+        <h2><span class="num">2</span> About Your Business</h2>
+        <p class="section-desc">Help us understand where you are today.</p>
 
         <div class="form-group">
-          <label class="field-label required">Preferred Communication Method</label>
-          <div class="radio-group">
-            <label><input type="radio" name="entry.582586495" value="Email" required> Email</label>
-            <label><input type="radio" name="entry.582586495" value="Phone"> Phone</label>
-            <label><input type="radio" name="entry.582586495" value="Text"> Text</label>
-          </div>
+          <label class="field-label" for="website">Your Website URL</label>
+          <input type="text" id="website" name="entry.344431799" placeholder="e.g. https://rainbowrestore.com/springfield">
         </div>
 
         <div class="form-group">
-          <label class="field-label required" for="address">Office Address</label>
-          <input type="text" id="address" name="entry.1918179121" required placeholder="123 Main St, City, State ZIP">
+          <label class="field-label" for="goals">What are your top marketing goals?</label>
+          <p class="helper">What does success look like for you? More calls, bigger jobs, new service areas — whatever matters most.</p>
+          <textarea id="goals" name="entry.853689257" placeholder="e.g. We want to increase water damage calls in our territory, break into commercial work"></textarea>
         </div>
 
         <div class="form-group">
-          <label class="field-label" for="office-name">Office Name for Google Ads</label>
-          <p class="helper">The business name you want displayed in your ads.</p>
-          <input type="text" id="office-name" name="entry.344431799" placeholder="e.g. Rainbow Restoration of Springfield">
-        </div>
-      </div>
-
-      <!-- Section 3: Budget -->
-      <div class="card">
-        <h2><span class="num">3</span> Monthly PPC Budget</h2>
-        <p class="section-desc">What ad spend level works for you?</p>
-
-        <div class="form-group">
-          <div class="budget-options">
-            <label class="budget-pill" onclick="selectBudget(this)">
-              <input type="radio" name="entry.1582309321" value="$2000/mo" required>
-              $2,000/mo
-            </label>
-            <label class="budget-pill" onclick="selectBudget(this)">
-              <input type="radio" name="entry.1582309321" value="$3500/mo">
-              $3,500/mo
-            </label>
-            <label class="budget-pill" onclick="selectBudget(this)">
-              <input type="radio" name="entry.1582309321" value="$5000+/mo">
-              $5,000+/mo
-            </label>
-            <label class="budget-pill" onclick="selectBudget(this)">
-              <input type="radio" name="entry.1582309321" value="Not sure">
-              Not Sure
-            </label>
-            <label class="budget-pill" onclick="selectBudget(this)">
-              <input type="radio" name="entry.1582309321" value="Starter level, so no PPC">
-              No PPC (Starter)
-            </label>
-          </div>
+          <label class="field-label" for="challenges">Any current marketing challenges?</label>
+          <p class="helper">Optional — anything you've tried that hasn't worked, or areas where you feel stuck.</p>
+          <textarea id="challenges" name="entry.487426541" placeholder="e.g. We've run Google Ads before but didn't see great ROI"></textarea>
         </div>
       </div>
 

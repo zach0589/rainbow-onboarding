@@ -151,6 +151,68 @@
     }
     .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
 
+    .bonuses-confirmed h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--rbw-navy);
+      margin-bottom: 0.6rem;
+    }
+    .bonus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .bonus-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .bonus-check {
+      color: var(--success);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .referral {
+      text-align: center;
+    }
+    .referral h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--rbw-navy);
+      margin-bottom: 0.25rem;
+    }
+    .referral p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+    .btn-copy {
+      display: inline-block;
+      background: var(--rbw-navy);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-copy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,43,92,0.2);
+    }
+    .copy-confirm {
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--success);
+      font-weight: 600;
+    }
+
     @media (max-width: 720px) {
       .thank-you-card { padding: 2rem 1.5rem; }
       .thank-you-card h1 { font-size: 1.4rem; }
@@ -180,6 +242,17 @@
 
       <div class="divider"></div>
 
+      <div class="bonuses-confirmed">
+        <h3>Your show exclusive bonuses are locked in</h3>
+        <div class="bonus-list">
+          <div class="bonus-item"><span class="bonus-check">&#10003;</span> Free competitive audit of your territory</div>
+          <div class="bonus-item"><span class="bonus-check">&#10003;</span> 3 bonus keywords tracked</div>
+          <div class="bonus-item"><span class="bonus-check">&#10003;</span> Free geo page for your top service area</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
       <div class="next-steps">
         <h3>What happens next</h3>
         <ol>
@@ -187,6 +260,15 @@
           <li>They'll reach out via your preferred contact method</li>
           <li>Together you'll finalize your strategy and get your campaigns launched</li>
         </ol>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="referral">
+        <h3>Know another Rainbow franchisee?</h3>
+        <p>Share this page — they can claim the show exclusive too.</p>
+        <button class="btn-copy" onclick="copyLink()">Copy Link</button>
+        <span class="copy-confirm" id="copy-confirm"></span>
       </div>
     </div>
   </div>
@@ -199,6 +281,18 @@
     <p>A digital marketing program by <a href="https://spotonsolutions.com">Spot On Solutions</a> for <a href="#">Rainbow Restoration</a> franchisees.</p>
     <p style="margin-top: 0.25rem;">&copy; 2026 Spot On Solutions. All rights reserved.</p>
   </footer>
+
+  <script>
+    function copyLink() {
+      var url = 'https://zach0589.github.io/rainbow-onboarding/';
+      navigator.clipboard.writeText(url).then(function() {
+        document.getElementById('copy-confirm').textContent = 'Copied!';
+        setTimeout(function() {
+          document.getElementById('copy-confirm').textContent = '';
+        }, 2000);
+      });
+    }
+  </script>
 
 </body>
 </html>

@@ -146,16 +146,29 @@
     .offer-inner {
       max-width: 620px;
       margin: 0 auto;
-      text-align: center;
     }
-    .offer-text {
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.5;
-      margin: 0;
-    }
-    .offer-text strong {
+    .offer-headline {
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--rbw-navy);
+      margin: 0 0 0.4rem;
+    }
+    .offer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .offer-list li {
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .offer-list li::before {
+      content: "\2713\0020";
+      color: var(--rbw-navy);
+      font-weight: 700;
     }
 
     /* ── Quick Form ── */
@@ -844,9 +857,12 @@
   <!-- Show Offer -->
   <div class="offer-banner">
     <div class="offer-inner">
-      <div class="offer-content">
-        <p class="offer-text"><strong>Conference special</strong> — sign up this week and we'll include a full content and competitive analysis, 3 bonus tracked keywords per service level, and a geo page for your top area.</p>
-      </div>
+      <p class="offer-headline">Sign up by Friday and get these free:</p>
+      <ul class="offer-list">
+        <li>Comprehensive content and competitive analysis</li>
+        <li>3 bonus keywords tracked per service level</li>
+        <li>Geo page built for your top service area</li>
+      </ul>
     </div>
   </div>
 
@@ -891,6 +907,9 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logos">
+      <img src="https://spotonsolutions.com/wp-content/uploads/2023/02/SOSLogo-2-1.png" alt="Spot On Solutions">
+    </div>
+    <div class="footer-logos" style="margin-top: 0.75rem;">
       <img src="assets/google-premier-partner.png" alt="Google Premier Partner 2026">
       <img src="assets/forbes-agency-council.png" alt="Forbes Agency Council">
       <img src="assets/ria-vendor-member.jpg" alt="RIA Vendor Member">

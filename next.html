@@ -52,34 +52,20 @@
     }
 
     /* ── Confirmation Banner ── */
-    .confirmation {
-      background: linear-gradient(135deg, var(--rbw-navy) 0%, var(--rbw-blue) 60%, var(--sos-blue) 100%);
-      color: var(--white);
-      text-align: center;
-      padding: 2.5rem 2rem;
-    }
-    .confirm-check {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+    .confirm-toast {
       background: var(--success);
       color: var(--white);
-      font-size: 1.8rem;
-      display: inline-flex;
+      text-align: center;
+      padding: 0.6rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 0.75rem;
+      gap: 0.4rem;
     }
-    .confirmation h1 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    .confirmation p {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      max-width: 540px;
-      margin: 0 auto;
+    .toast-check {
+      font-size: 1rem;
     }
 
     /* ── Levels Section ── */
@@ -296,7 +282,6 @@
     .footer-logos img { height: 36px; width: auto; opacity: 0.7; }
 
     @media (max-width: 720px) {
-      .confirmation h1 { font-size: 1.4rem; }
       .levels-grid { grid-template-columns: 1fr; }
       .header { gap: 1rem; padding: 0.75rem 1rem; }
       .header-logo img { height: 40px; }
@@ -317,17 +302,15 @@
     <span class="header-tag">Digital Marketing Program</span>
   </header>
 
-  <!-- Confirmation -->
-  <section class="confirmation">
-    <div class="confirm-check">&#10003;</div>
-    <h1>Thanks for connecting!</h1>
-    <p>A dedicated marketing specialist will be in touch within 1 business day to walk you through the program.</p>
-  </section>
+  <!-- Confirmation (minimal) -->
+  <div class="confirm-toast">
+    <span class="toast-check">&#10003;</span> Info received
+  </div>
 
   <!-- Service Levels -->
   <div class="levels-section">
-    <h2>Which service level interests you?</h2>
-    <p class="levels-subtitle">Select one to let your consultant know, or discuss it during your meeting.</p>
+    <h2>Which level fits your franchise?</h2>
+    <p class="levels-subtitle">Your show exclusive includes 3 bonus keywords on top of any level below.</p>
     <div class="levels-grid">
       <div class="level-card" onclick="selectLevel(this, 'Starter')">
         <div class="level-name">Starter</div>
@@ -417,7 +400,7 @@
       document.querySelector('.not-sure-option').classList.remove('selected');
       el.classList.add('selected');
 
-      ctaBtn.textContent = 'Continue to Onboarding';
+      ctaBtn.textContent = 'Next';
       ctaBtn.href = intakeFormUrl + '?level=' + encodeURIComponent(levelName);
       ctaBtn.className = 'btn-schedule btn-onboarding';
       showCta();

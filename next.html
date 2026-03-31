@@ -185,41 +185,6 @@
       margin-top: 1.25rem;
     }
 
-    /* ── Not Sure Option ── */
-    .not-sure-option {
-      margin-top: 1.5rem;
-      border: 2px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      cursor: pointer;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--white);
-    }
-    .not-sure-option:hover {
-      border-color: var(--rbw-blue);
-      background: rgba(0,87,160,0.03);
-    }
-    .not-sure-option.selected {
-      border-color: var(--rbw-red);
-      border-style: solid;
-      box-shadow: 0 4px 20px rgba(200,16,46,0.15);
-      background: rgba(200,16,46,0.02);
-    }
-    .not-sure-text strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--rbw-navy);
-      margin-bottom: 0.15rem;
-    }
-    .not-sure-text span {
-      font-size: 0.88rem;
-      color: var(--text-light);
-      line-height: 1.45;
-    }
-
     /* ── Schedule CTA ── */
     .schedule-section {
       max-width: 860px;
@@ -244,12 +209,6 @@
     .btn-schedule:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 16px rgba(200,16,46,0.3);
-    }
-    .btn-onboarding {
-      background: linear-gradient(135deg, var(--rbw-navy), var(--rbw-blue));
-    }
-    .btn-onboarding:hover {
-      box-shadow: 0 4px 16px rgba(0,43,92,0.3);
     }
     .schedule-note {
       font-size: 0.85rem;
@@ -300,15 +259,15 @@
 
   <!-- Confirmation (minimal) -->
   <div class="confirm-toast">
-    <span class="toast-check">&#10003;</span> Info received
+    <span class="toast-check">&#10003;</span> Got it — a consultant will reach out to schedule your analysis
   </div>
 
   <!-- Service Levels -->
   <div class="levels-section">
-    <h2>Which level fits your franchise?</h2>
-    <p class="levels-subtitle">Your conference special includes 3 complimentary keywords on top of any level below.</p>
+    <h2>While you're here, take a look at our service levels</h2>
+    <p class="levels-subtitle">Your consultant will walk through these with you and help determine the right fit. Conference special: 3 complimentary keywords included with any level.</p>
     <div class="levels-grid">
-      <div class="level-card" onclick="selectLevel(this, 'Starter')">
+      <div class="level-card" >
         <div class="level-name">Starter</div>
         <div class="level-price">$875<span>/mo</span></div>
         <ul class="level-features">
@@ -320,7 +279,7 @@
           <li>Monthly strategy call</li>
         </ul>
       </div>
-      <div class="level-card level-featured" onclick="selectLevel(this, 'Standard')">
+      <div class="level-card level-featured" >
         <span class="level-badge">Most Popular</span>
         <div class="level-name">Standard</div>
         <div class="level-price">$3,500<span>/mo + 10% ad spend</span></div>
@@ -335,7 +294,7 @@
           <li>Monthly strategy call</li>
         </ul>
       </div>
-      <div class="level-card" onclick="selectLevel(this, 'Accelerated')">
+      <div class="level-card" >
         <div class="level-name">Accelerated</div>
         <div class="level-price">$4,400<span>/mo + 10% ad spend</span></div>
         <ul class="level-features">
@@ -353,17 +312,11 @@
     </div>
     <p class="levels-note">One-time setup fee: $750. Multi-location discounts available ($50 &ndash; $150/month off).</p>
 
-    <div class="not-sure-option" onclick="selectNotSure(this)">
-      <div class="not-sure-text">
-        <strong>Need help deciding?</strong>
-        <span>Talk to a Spot On Solutions marketing consultant who can recommend the right fit for your franchise.</span>
-      </div>
-    </div>
   </div>
 
-  <!-- Dynamic CTA -->
-  <div class="schedule-section" id="cta-section" style="display:none;">
-    <a href="#" id="cta-btn" class="btn-schedule"></a>
+  <!-- CTA -->
+  <div class="schedule-section">
+    <p class="schedule-note">Interested in a specific level? Let us know when you speak with your consultant — no need to decide now.</p>
   </div>
 
   <!-- Footer -->
@@ -381,41 +334,15 @@
   </footer>
 
   <script>
-    var ctaSection = document.getElementById('cta-section');
-    var ctaBtn = document.getElementById('cta-btn');
-    // TODO: replace with your actual intake form and calendly URLs
-    var intakeFormUrl = 'intake.html';
-    var scheduleUrl = '#';
-
-    function showCta() {
-      ctaSection.style.display = 'block';
-      ctaSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function selectLevel(el, levelName) {
-      document.querySelectorAll('.level-card').forEach(function(c) {
-        c.classList.remove('selected');
+    // Cards are informational only — highlight on click for visual feedback
+    document.querySelectorAll('.level-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.level-card').forEach(function(c) {
+          c.classList.remove('selected');
+        });
+        card.classList.add('selected');
       });
-      document.querySelector('.not-sure-option').classList.remove('selected');
-      el.classList.add('selected');
-
-      ctaBtn.textContent = 'Next';
-      ctaBtn.href = intakeFormUrl + '?level=' + encodeURIComponent(levelName);
-      ctaBtn.className = 'btn-schedule btn-onboarding';
-      showCta();
-    }
-
-    function selectNotSure(el) {
-      document.querySelectorAll('.level-card').forEach(function(c) {
-        c.classList.remove('selected');
-      });
-      el.classList.add('selected');
-
-      ctaBtn.textContent = 'Schedule a Meeting With Your Consultant';
-      ctaBtn.href = scheduleUrl;
-      ctaBtn.className = 'btn-schedule';
-      showCta();
-    }
+    });
   </script>
 
 </body>

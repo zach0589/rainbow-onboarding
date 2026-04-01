@@ -497,6 +497,122 @@
       margin-top: 1rem;
     }
 
+    /* ── Sign-Up Form Overlay ── */
+    .signup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,43,92,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .signup-overlay.visible { display: flex; }
+    .signup-modal {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(0,43,92,0.2);
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      animation: modalSlideUp 0.3s ease;
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .signup-modal h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--rbw-navy);
+      margin-bottom: 0.25rem;
+      text-align: center;
+      display: block;
+    }
+    .signup-modal .modal-sub {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+    .signup-modal .selected-level-badge {
+      display: inline-block;
+      background: rgba(200,16,46,0.08);
+      color: var(--rbw-red);
+      font-weight: 700;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+    .signup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+    }
+    .signup-close:hover { color: var(--text); }
+    .signup-modal .form-group {
+      margin-bottom: 1.1rem;
+    }
+    .signup-modal .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+    .signup-modal input[type="text"],
+    .signup-modal input[type="email"],
+    .signup-modal input[type="tel"],
+    .signup-modal input[type="url"] {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+    }
+    .signup-modal input:focus {
+      outline: none;
+      border-color: var(--rbw-blue);
+      box-shadow: 0 0 0 3px rgba(0,87,160,0.12);
+    }
+    .btn-signup-submit {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--rbw-red), #a00d25);
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+      margin-top: 0.5rem;
+    }
+    .btn-signup-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(200,16,46,0.3);
+    }
+    .btn-signup-submit:active { transform: scale(0.99); }
+
+    @media (max-width: 720px) {
+      .signup-modal { padding: 2rem 1.5rem; }
+    }
+
     /* ── Full Form Toggle ── */
     .full-form-toggle {
       text-align: center;
@@ -977,6 +1093,49 @@
     </div>
   </div>
 
+  <!-- Sign-Up Contact Form Overlay -->
+  <div class="signup-overlay" id="signup-overlay">
+    <div class="signup-modal">
+      <button class="signup-close" onclick="closeSignup()">&times;</button>
+      <h2>Almost There!</h2>
+      <p class="modal-sub">
+        Tell us a bit about yourself to get your
+        <span class="selected-level-badge" id="signup-level-label">—</span>
+        campaign started.
+      </p>
+      <form id="signup-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe-signup">
+        <div class="form-group">
+          <label for="su-name">Name *</label>
+          <input type="text" id="su-name" required placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label for="su-email">Email *</label>
+          <input type="email" id="su-email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="su-phone">Phone Number *</label>
+          <input type="tel" id="su-phone" name="entry.1519933225" required placeholder="(555) 123-4567">
+        </div>
+        <div class="form-group">
+          <label for="su-franchise">Rainbow # or Location</label>
+          <input type="text" id="su-franchise" name="entry.438803073" placeholder="e.g. RBW12345 or Springfield, MO">
+        </div>
+        <div class="form-group">
+          <label for="su-website">Website</label>
+          <input type="url" id="su-website" placeholder="https://yoursite.com">
+        </div>
+        <!-- Hidden fields for Google Forms -->
+        <input type="hidden" id="su-name-hidden" name="entry.1854573517">
+        <input type="hidden" id="su-email-hidden" name="entry.1325498381">
+        <input type="hidden" id="su-contact-combined" name="entry.1668087612">
+        <input type="hidden" id="su-level-hidden" name="entry.19826248">
+        <input type="hidden" id="su-website-hidden" name="entry.344431799">
+        <button type="submit" class="btn-signup-submit">Get Started</button>
+      </form>
+    </div>
+  </div>
+  <iframe name="hidden-iframe-signup" style="display:none;"></iframe>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-logos">
@@ -1019,8 +1178,43 @@
     }
 
     function submitLevel() {
-      window.location.href = 'thanks.html?level=' + encodeURIComponent(selectedLevel);
+      // Show the contact form modal instead of going straight to thanks
+      document.getElementById('signup-level-label').textContent = selectedLevel;
+      document.getElementById('su-level-hidden').value = selectedLevel;
+      document.getElementById('signup-overlay').classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('su-name').focus();
     }
+
+    function closeSignup() {
+      document.getElementById('signup-overlay').classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('signup-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeSignup();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeSignup();
+    });
+
+    // Sign-up form submission
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      var name = document.getElementById('su-name').value;
+      var email = document.getElementById('su-email').value;
+      var website = document.getElementById('su-website').value;
+      document.getElementById('su-name-hidden').value = name;
+      document.getElementById('su-email-hidden').value = email;
+      document.getElementById('su-contact-combined').value = name + ' — ' + email;
+      document.getElementById('su-website-hidden').value = website;
+
+      setTimeout(function() {
+        window.location.href = 'thanks.html?level=' + encodeURIComponent(selectedLevel);
+      }, 500);
+    });
 
   </script>
 

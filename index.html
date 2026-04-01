@@ -1122,7 +1122,10 @@
         </div>
         <div class="form-group">
           <label for="su-website">Website</label>
-          <input type="url" id="su-website" placeholder="https://yoursite.com">
+          <div style="display:flex; align-items:center; gap:0;">
+            <span style="padding:0.7rem 0.6rem; background:var(--off-white); border:1.5px solid var(--border); border-right:none; border-radius:var(--radius) 0 0 var(--radius); font-size:0.95rem; color:var(--text-light); white-space:nowrap;">www.</span>
+            <input type="text" id="su-website" placeholder="yoursite.com" style="border-radius:0 var(--radius) var(--radius) 0;">
+          </div>
         </div>
         <!-- Hidden fields for Google Forms -->
         <input type="hidden" id="su-name-hidden" name="entry.1854573517">

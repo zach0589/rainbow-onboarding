@@ -928,7 +928,7 @@
     <h2>Ready to get started?</h2>
     <p class="levels-subtitle">If you already know what you need, pick a level below. Sign up during the conference and get a complimentary geo page and 3 additional keywords tracked.</p>
     <div class="levels-grid">
-      <div class="level-card">
+      <div class="level-card" onclick="selectLevel(this, 'Starter')">
         <div class="level-name">Starter</div>
         <div class="level-price">$875<span>/mo</span></div>
         <ul class="level-features">
@@ -940,7 +940,7 @@
           <li>Monthly strategy call</li>
         </ul>
       </div>
-      <div class="level-card level-featured">
+      <div class="level-card level-featured" onclick="selectLevel(this, 'Standard')">
         <span class="level-badge">Most Popular</span>
         <div class="level-name">Standard</div>
         <div class="level-price">$3,500<span>/mo + 10% ad spend</span></div>
@@ -955,7 +955,7 @@
           <li>Monthly strategy call</li>
         </ul>
       </div>
-      <div class="level-card">
+      <div class="level-card" onclick="selectLevel(this, 'Accelerated')">
         <div class="level-name">Accelerated</div>
         <div class="level-price">$4,400<span>/mo + 10% ad spend</span></div>
         <ul class="level-features">
@@ -972,6 +972,9 @@
       </div>
     </div>
     <p class="levels-note">One-time setup fee: $750. Multi-location discounts available ($50 &ndash; $150/month off).</p>
+    <div id="level-cta" style="text-align: center; margin-top: 1.5rem; display: none;">
+      <button onclick="submitLevel()" class="btn-quick" style="max-width: 400px;">Sign Up for <span id="level-choice"></span></button>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -989,7 +992,7 @@
   </footer>
 
   <script>
-    // Quick form: populate hidden fields, then redirect
+    // Quick form: populate hidden fields, then redirect to booking
     document.getElementById('quick-capture').addEventListener('submit', function(e) {
       var name = document.getElementById('q-name').value;
       var email = document.getElementById('q-email').value;
@@ -997,11 +1000,27 @@
       document.getElementById('q-email-hidden').value = email;
       document.getElementById('q-contact-combined').value = name + ' — ' + email;
 
-      // Redirect to service levels page after submission
       setTimeout(function() {
         window.location.href = 'next.html';
       }, 500);
     });
+
+    // Service level selection
+    var selectedLevel = '';
+
+    function selectLevel(el, levelName) {
+      document.querySelectorAll('.level-card').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      el.classList.add('selected');
+      selectedLevel = levelName;
+      document.getElementById('level-choice').textContent = levelName;
+      document.getElementById('level-cta').style.display = 'block';
+    }
+
+    function submitLevel() {
+      window.location.href = 'thanks.html?level=' + encodeURIComponent(selectedLevel);
+    }
 
   </script>
 

@@ -985,7 +985,7 @@
       <div id="quick-form-content">
         <h2>Schedule Your Consultation</h2>
         <p class="quick-sub">Tell us a little about your franchise and we'll be in touch to set up a time.</p>
-        <form id="quick-capture" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe">
+        <form id="quick-capture">
           <div class="quick-row">
             <div>
               <label for="q-name">Your Name *</label>
@@ -999,24 +999,20 @@
           <div class="quick-row">
             <div>
               <label for="q-phone">Phone *</label>
-              <input type="tel" id="q-phone" name="entry.1519933225" required placeholder="(555) 123-4567">
+              <input type="tel" id="q-phone" required placeholder="(555) 123-4567">
             </div>
             <div>
               <label for="q-franchise">Rainbow # or Location</label>
-              <input type="text" id="q-franchise" name="entry.438803073" placeholder="e.g. RBW12345">
+              <input type="text" id="q-franchise" placeholder="e.g. RBW12345">
             </div>
           </div>
-          <!-- Name and email submitted separately + combined for legacy field -->
-          <input type="hidden" id="q-name-hidden" name="entry.1854573517">
-          <input type="hidden" id="q-email-hidden" name="entry.1325498381">
-          <input type="hidden" id="q-contact-combined" name="entry.1668087612">
           <button type="submit" class="btn-quick">Request a Consultation</button>
         </form>
       </div>
     </div>
   </div>
 
-  <iframe name="hidden-iframe" style="display:none;"></iframe>
+  <!-- iframes removed: using fetch-based email submission -->
 
   <!-- What We'll Cover -->
   <div class="value-section">
@@ -1102,7 +1098,7 @@
         <span class="selected-level-badge" id="signup-level-label">—</span>
         campaign started.
       </p>
-      <form id="signup-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfF7Th3e-OQjXyrTp3PQnSq3XWz71wgBSjjf0z9ncT4TnCf_A/formResponse" method="POST" target="hidden-iframe-signup">
+      <form id="signup-form">
         <div class="form-group">
           <label for="su-name">Name *</label>
           <input type="text" id="su-name" required placeholder="Your full name">
@@ -1113,11 +1109,11 @@
         </div>
         <div class="form-group">
           <label for="su-phone">Phone Number *</label>
-          <input type="tel" id="su-phone" name="entry.1519933225" required placeholder="(555) 123-4567">
+          <input type="tel" id="su-phone" required placeholder="(555) 123-4567">
         </div>
         <div class="form-group">
           <label for="su-franchise">Rainbow # or Location</label>
-          <input type="text" id="su-franchise" name="entry.438803073" placeholder="e.g. RBW12345 or Springfield, MO">
+          <input type="text" id="su-franchise" placeholder="e.g. RBW12345 or Springfield, MO">
         </div>
         <div class="form-group">
           <label for="su-website">Website</label>
@@ -1126,17 +1122,11 @@
             <input type="text" id="su-website" placeholder="yoursite.com" style="border-radius:0 var(--radius) var(--radius) 0;">
           </div>
         </div>
-        <!-- Hidden fields for Google Forms -->
-        <input type="hidden" id="su-name-hidden" name="entry.1854573517">
-        <input type="hidden" id="su-email-hidden" name="entry.1325498381">
-        <input type="hidden" id="su-contact-combined" name="entry.1668087612">
-        <input type="hidden" id="su-level-hidden" name="entry.19826248">
-        <input type="hidden" id="su-website-hidden" name="entry.344431799">
+        <input type="hidden" id="su-level-hidden">
         <button type="submit" class="btn-signup-submit">Get Started</button>
       </form>
     </div>
   </div>
-  <iframe name="hidden-iframe-signup" style="display:none;"></iframe>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1153,17 +1143,28 @@
   </footer>
 
   <script>
-    // Quick form: populate hidden fields, then redirect to booking
-    document.getElementById('quick-capture').addEventListener('submit', function(e) {
-      var name = document.getElementById('q-name').value;
-      var email = document.getElementById('q-email').value;
-      document.getElementById('q-name-hidden').value = name;
-      document.getElementById('q-email-hidden').value = email;
-      document.getElementById('q-contact-combined').value = name + ' — ' + email;
+    var FORMSUBMIT_URL = 'https://formsubmit.co/ajax/zach@spotonsolutions.com';
 
-      setTimeout(function() {
-        window.location.href = 'next.html';
-      }, 500);
+    function sendEmail(data, redirect) {
+      data._cc = 'kayley@spotonsolutions.com';
+      data._captcha = 'false';
+      data._template = 'table';
+
+      fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function() {
+        window.location.href = redirect;
+      }).catch(function() {
+        window.location.href = redirect;
+      });
+    }
+
+    // Quick consultation form — goes straight to HubSpot scheduler
+    document.getElementById('quick-capture').addEventListener('submit', function(e) {
+      e.preventDefault();
+      window.location.href = 'next.html';
     });
 
     // Service level selection
@@ -1180,7 +1181,6 @@
     }
 
     function submitLevel() {
-      // Show the contact form modal instead of going straight to thanks
       document.getElementById('signup-level-label').textContent = selectedLevel;
       document.getElementById('su-level-hidden').value = selectedLevel;
       document.getElementById('signup-overlay').classList.add('visible');
@@ -1193,29 +1193,28 @@
       document.body.style.overflow = '';
     }
 
-    // Close modal on backdrop click
     document.getElementById('signup-overlay').addEventListener('click', function(e) {
       if (e.target === this) closeSignup();
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeSignup();
     });
 
-    // Sign-up form submission
+    // Package signup form
     document.getElementById('signup-form').addEventListener('submit', function(e) {
-      var name = document.getElementById('su-name').value;
-      var email = document.getElementById('su-email').value;
+      e.preventDefault();
       var website = document.getElementById('su-website').value;
-      document.getElementById('su-name-hidden').value = name;
-      document.getElementById('su-email-hidden').value = email;
-      document.getElementById('su-contact-combined').value = name + ' — ' + email;
-      document.getElementById('su-website-hidden').value = website ? 'www.' + website : '';
-
-      setTimeout(function() {
-        window.location.href = 'thanks.html?level=' + encodeURIComponent(selectedLevel);
-      }, 500);
+      sendEmail({
+        _subject: 'New Rainbow Package Signup — ' + selectedLevel,
+        Name: document.getElementById('su-name').value,
+        Email: document.getElementById('su-email').value,
+        Phone: document.getElementById('su-phone').value,
+        'Franchise': document.getElementById('su-franchise').value || '(not provided)',
+        'Package Level': selectedLevel,
+        'Website': website ? 'www.' + website : '(not provided)',
+        'Type': 'Package Signup'
+      }, 'thanks.html?level=' + encodeURIComponent(selectedLevel));
     });
 
   </script>
